@@ -9,7 +9,7 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
   if (action.type === 'ADD') {
     const updatedTotalAmount =
-      state.totalAmount + action.item.price.toFixed(2) * action.item.amount;
+      state.totalAmount + action.item.price * action.item.amount;
 
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
@@ -30,7 +30,7 @@ const cartReducer = (state, action) => {
 
     return {
       items: updatedItems,
-      totalAmount: updatedTotalAmount,
+      totalAmount: +updatedTotalAmount.toFixed(2),
     };
   }
   if (action.type === 'REMOVE') {
@@ -38,7 +38,7 @@ const cartReducer = (state, action) => {
       (item) => item.id === action.id
     );
     const existingItem = state.items[existingCartItemIndex];
-    const updatedTotalAmount = state.totalAmount.toFixed(2) - existingItem.price.toFixed(2);
+    const updatedTotalAmount = state.totalAmount - existingItem.price;
     let updatedItems;
     if (existingItem.amount === 1) {
       updatedItems = state.items.filter(item => item.id !== action.id);
@@ -47,22 +47,32 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
-    console.log(updatedTotalAmount)
+
     return {
       items: updatedItems,
-      totalAmount: updatedTotalAmount
+      totalAmount: +updatedTotalAmount.toFixed(2)
     };
-    
+  }
+
+  if (action.type ==='CLEAR') {
+    return defaultCartState;
   }
 
   return defaultCartState;
 };
+
+
 
 const CartProvider = (props) => {
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
   );
+
+  const clearCart = () => {
+    dispatchCartAction({ type: 'CLEAR'});
+  };
+
 
   const addItemToCartHandler = (item) => {
     dispatchCartAction({ type: 'ADD', item: item });
@@ -77,6 +87,7 @@ const CartProvider = (props) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    clearCart: clearCart
   };
 
   return (
