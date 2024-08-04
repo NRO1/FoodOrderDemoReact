@@ -26,20 +26,7 @@ const Cart = (props) => {
   };
 
   const submitHandler = async (userData) => {
-    setSubmitting(true);
-    await fetch(
-      "https://foodapp-97868-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          user: userData,
-          orderItems: cartCtx.items,
-        }),
-      }
-    );
-    setSubmitting(false);
-    setDidSubmit(true);
-    cartCtx.clearCart();
+    console.log(userData)
   };
 
   const CartItems = (
