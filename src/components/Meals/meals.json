@@ -1,0 +1,7 @@
+{
+"m1":{"description":"Made with the finest fish","name":"Sushi","price":20.99},
+"m2":{"description":"A German specialty!","name":"Schnitzel","price":16.5},
+"m3":{"description":"American, raw, meaty","name":"Hamburger","price":12.99},
+"m4":{"description":"Healthy and green...","name":"Green Salald","price":9.99},
+"m5":{"description":"Hot and cheesy","name":"Pizza","price":11.99}
+}

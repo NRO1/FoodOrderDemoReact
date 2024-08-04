@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./AvailableMeals.module.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
+import mealsData from "./meals.json"
 
 const AvaliableMeals = () => {
   const [meals, setMeals] = useState([]);
@@ -10,7 +11,7 @@ const AvaliableMeals = () => {
 
   useEffect(() => {
     const fetchMeals = async () => {
-      const response = await fetch(
+      /*const response = await fetch(
         "https://foodapp-97868-default-rtdb.europe-west1.firebasedatabase.app/meals.json"
       );
 
@@ -18,9 +19,10 @@ const AvaliableMeals = () => {
         throw new Error("Something went wrong, please try later");
       }
 
-       const data = await response.json();
+       const data = await response.json();*/
       
-
+      const data = JSON.parse(JSON.stringify(mealsData));
+      
       const loadedMeals = [];
       for (const key in data) {
         loadedMeals.push({
