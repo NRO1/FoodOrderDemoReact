@@ -18,7 +18,8 @@ const AvaliableMeals = () => {
         throw new Error("Something went wrong, please try later");
       }
 
-      const data = await response.json();
+       const data = await response.json();
+      
 
       const loadedMeals = [];
       for (const key in data) {
