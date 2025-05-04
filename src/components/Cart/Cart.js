@@ -6,8 +6,8 @@ import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 
 const Cart = (props) => {
-  const [submitting, setSubmitting] = useState(false);
-  const [didSubmit, setDidSubmit] = useState(false);
+  /*const [submitting, setSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);*/
   const [checkout, setCheckout] = useState(false);
   const cartCtx = useContext(CartContext);
   const totalAmount = `$${cartCtx.totalAmount}`;
