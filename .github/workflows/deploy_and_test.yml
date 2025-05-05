@@ -48,4 +48,5 @@ jobs:
 
       - name: execute selenium sanity test script 
         run: |
+          cd selenium_tests
           pytest test_sanity.py --browser edge
