@@ -36,3 +36,4 @@ class BasePage:
             return self._find(locator).is_displayed()
         except NoSuchElementException:
             return False
+        

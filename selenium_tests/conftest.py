@@ -37,3 +37,5 @@ def pytest_addoption(parser):
 #     yield new_driver
 #     print(f'Closing {browser} driver')
 #     new_driver.quit()
+
+# pytest -p no:cacheprovider test_sanity.py --browser=chrome
