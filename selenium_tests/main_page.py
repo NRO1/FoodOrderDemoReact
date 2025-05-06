@@ -4,8 +4,7 @@ from selenium.webdriver.common.by import By
 
 class MainPage(BasePage):
     ## locators
-    #_url = 'http://foodapp.natiroth.com/'
-    _url = 'http://localhost:3000/'
+    _url = 'http://foodapp.natiroth.com/'
     _header_locator = (By.XPATH, '//h1[text()="Super meals"]')
     _cart_locator = (By.XPATH, '//span[text()="Cart"]')
 

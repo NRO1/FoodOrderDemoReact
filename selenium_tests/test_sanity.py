@@ -5,8 +5,7 @@ class TestSanity():
     def test_sanity(self, driver):
         main_page = MainPage(driver)
         main_page.go_to_main_page()
-        #assert driver.current_url == 'http://foodapp.natiroth.com/', 'URL not found'
-        assert driver.current_url == 'http://localhost:3000/'
+        assert driver.current_url == 'http://foodapp.natiroth.com/', 'URL not found'
         print('Main page sanity starts..')
         time.sleep(3)
         print('Main page sanity starts..')
