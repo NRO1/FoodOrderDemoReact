@@ -1,14 +1,22 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 
-@pytest.fixture
+@pytest.fixture(params=["chrome", "edge"])
 def driver(request):
-    browser = request.config.getoption("--browser")
+    browser = request.param
     print(f'Creating {browser} driver')
     if browser == 'chrome':
-        new_driver = webdriver.Chrome()
+        chrome_options = ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--ignore-certificate-errors')
+        new_driver = webdriver.Chrome(options=chrome_options)
     elif browser == 'edge':
-        new_driver = webdriver.Edge()
+        edge_options = EdgeOptions()
+        edge_options.add_argument('--headless')
+        edge_options.add_argument('--ignore-certificate-errors')
+        new_driver = webdriver.Edge(options=edge_options)
     else:
         raise TypeError(f"Expected 'chrome' or 'edge' but got {browser}")
     yield new_driver
@@ -16,26 +24,3 @@ def driver(request):
     new_driver.quit()
     
     
-# adding option for the cli command
-def pytest_addoption(parser):
-    parser.addoption("--browser", action='store', default='chrome', help='browser to exceute tests')
-    
-    
-
-    
-### running tests on several browsers
-# @pytest.fixture(params=["chrome", "edge"])
-# def driver(request):
-#     browser = request.param
-#     print(f'Creating {browser} driver')
-#     if browser == 'chrome':
-#         new_driver = webdriver.Chrome()
-#     elif browser == 'edge':
-#         new_driver = webdriver.Edge()
-#     else:
-#         raise TypeError(f"Expected 'chrome' or 'edge' but got {browser}")
-#     yield new_driver
-#     print(f'Closing {browser} driver')
-#     new_driver.quit()
-
-# pytest -p no:cacheprovider test_sanity.py --browser=chrome

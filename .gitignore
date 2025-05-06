@@ -3,10 +3,10 @@ node_modules
 /dist
 /build
 /.cache
-/__pycache__
-/.pytest_cache
+/selenium_tests/__pycache__
+/selenium_tests/.pytest_cache
 /.env
-
+junk.py
 
 # local env files
 .env.local
