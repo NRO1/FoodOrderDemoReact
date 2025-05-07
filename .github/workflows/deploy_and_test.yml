@@ -49,4 +49,4 @@ jobs:
       - name: execute selenium sanity test script 
         run: |
           cd selenium_tests
-          pytest -s test_sanity.py 
+          pytest -s test_sanity_main_page.py

@@ -4,8 +4,9 @@ import platform
 
 class MainPage(BasePage):
     ## locators
-    _header_locator = (By.XPATH, '//h1[text()="Super meals"]')
-    _cart_locator = (By.XPATH, '//span[text()="Cart"]')
+    _header_locator = (By.ID, 'main-header')
+    _cart_locator = (By.ID, 'cart-button')
+    _top_image = (By.ID, 'top-image')
 
     ########################################
     def __init__(self, driver):
@@ -38,5 +39,13 @@ class MainPage(BasePage):
             return True
         except Exception as error:
             print(f'Could Not find cart element: {error}')
+            return False
+        
+    def verify_top_image(self):
+        try:
+            self._find_element(self._top_image)
+            return True
+        except Exception as error:
+            print(f'Could Not find top image: {error}')
             return False
 
