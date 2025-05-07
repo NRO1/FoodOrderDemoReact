@@ -1,10 +1,9 @@
 from base_page import BasePage
 from selenium.webdriver.common.by import By
-
+import platform
 
 class MainPage(BasePage):
     ## locators
-    _url = 'http://foodapp.natiroth.com/'
     _header_locator = (By.XPATH, '//h1[text()="Super meals"]')
     _cart_locator = (By.XPATH, '//span[text()="Cart"]')
 
@@ -14,8 +13,16 @@ class MainPage(BasePage):
         self._driver = driver
    ########################################
    
+    @property
+    def url(self):
+        if platform.system() == 'Windows':
+            self._url = 'http://localhost:3000/'
+        else:
+            self._url = 'http://foodapp.natiroth.com/'
+        return self._url
+   
     def go_to_main_page(self):
-        self._driver.get(self._url)
+        self._driver.get(self.url)
         
     def verify_header(self):
         try:
